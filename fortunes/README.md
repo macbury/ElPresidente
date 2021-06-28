@@ -1,0 +1,1 @@
+Fortunki pochodzą z: https://github.com/kevingnet/fortunes_translated

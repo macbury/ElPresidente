@@ -1,0 +1,19 @@
+version: '3.3'
+
+volumes:
+  redis-data:
+
+services:
+  elpresidente:
+    build: .
+    network_mode: host
+    env_file: .env
+    command: "exe/elpresidente start -c 100"
+    volumes:
+      - ./google.json:/elpresidente/google.json
+  redis:
+    image: redis:6.2
+    ports:
+      - '7179:6379'
+    volumes:
+      - redis-data:/var/lib/redis

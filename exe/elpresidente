@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "elpresidente"
+require "elpresidente/cli"
+require 'dotenv/load'
+require 'zeitwerk'
+
+Slack.configure do |config|
+  config.token = ENV['SLACK_API_TOKEN']
+  raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
+end
+
+Slack::RealTime::Client.configure do |config|
+  config.start_options[:simple_latest] = true
+  config.start_options[:no_unreads] = true
+  config.start_options[:request][:timeout] = 360
+  config.concurrency = Slack::RealTime::Concurrency::Async
+end
+
+Dry::CLI.new(Elpresidente::CLI).call

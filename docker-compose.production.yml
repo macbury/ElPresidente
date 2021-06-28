@@ -1,0 +1,18 @@
+version: '3.3'
+volumes:
+  redis-db:
+services:
+  elpresidente:
+    restart: always
+    image: macbury/elpresidente:latest
+    env_file: .env
+    command: "exe/elpresidente start -c 100"
+    volumes:
+      - ./google.json:/elpresidente/google.json
+  redis:
+    restart: always
+    image: redis:6.2
+    ports:
+      - '7179:6379'
+    volumes:
+      - redis-db:/data

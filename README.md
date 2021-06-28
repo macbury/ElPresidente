@@ -1,6 +1,6 @@
 # ElPresidente
 
-Super simple slack bot
+![logo](docs/top.jpg)
 
 ## Used tech
 
@@ -106,5 +106,5 @@ The gem is available as open source under the terms of the [MIT License](https:/
 * https://github.com/slack-ruby/slack-ruby-client
 * https://github.com/CGA1123/slack-ruby-block-kit
 * https://github.com/kevingnet/fortunes_translated
-
+* https://hub.docker.com/r/macbury/elpresidente
 

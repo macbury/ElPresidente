@@ -11,8 +11,8 @@ module Elpresidente
         def execute
           return unless cron_match?('10 9 * * 1,2,3,4,5')
 
-          info "Running Start of day Announcements"
-          
+          info 'Running Start of day Announcements'
+
           tvp_image_url = generate_random_tvp_image_url(internet: internet)
           suchar = random_suchar(internet: internet)
           slang = random_slang(internet: internet)
@@ -22,7 +22,7 @@ module Elpresidente
           say!('Witajcie, tu Wasz El Presidente!') do |blocks|
             blocks.section do |section|
               section.mrkdwn text: <<~SLANG
-                *Dzisiaj mamy święto: * 
+                *Dzisiaj mamy święto:
 
                 #{holidays.map { |text| "- #{text}" }.join("\n")}
               SLANG
@@ -30,20 +30,20 @@ module Elpresidente
 
             blocks.section do |section|
               section.mrkdwn text: <<~SLANG
-                *Z cyklu: ElPresidente łączy pokolenia, słówko na dzisiaj to: * 
+                *Z cyklu: ElPresidente łączy pokolenia, słówko na dzisiaj to: *
 
                 `#{slang[:word]}`
 
                 ```#{slang[:description]}```
               SLANG
             end
-            
+
             blocks.divider
 
             blocks.section do |section|
               section.mrkdwn text: <<~MYSLI
-                *Poranne przemówienie oraz złote myśli waszego wodza:* 
-                
+                *Poranne przemówienie oraz złote myśli waszego wodza:*
+
                 ```#{fortune}```
               MYSLI
             end
@@ -52,8 +52,8 @@ module Elpresidente
 
             blocks.section do |section|
               section.mrkdwn text: <<~MYSLI
-                *Lekki suchar na gorące dni:* 
-                
+                *Lekki suchar na gorące dni:*
+
                 ```#{suchar.values.join("\n\n\n\n\n")}```
               MYSLI
             end
@@ -68,7 +68,7 @@ module Elpresidente
         private
 
         def channel_name
-          'notifications'
+          'random'
         end
       end
     end

@@ -1,5 +1,5 @@
-require "dry/cli"
-require "elpresidente/controller"
+require 'dry/cli'
+require 'elpresidente/controller'
 require 'pry'
 
 module Elpresidente
@@ -7,7 +7,7 @@ module Elpresidente
     extend Dry::CLI::Registry
 
     class Version < Dry::CLI::Command
-      desc "Print version"
+      desc 'Print version'
 
       def call(*)
         puts Elpresidente::VERSION
@@ -49,8 +49,8 @@ module Elpresidente
       end
     end
 
-    register "start", Start
-    register "console", Console
-    register "version", Version, aliases: ["v", "-v", "--version"]
+    register 'start', Start
+    register 'console', Console
+    register 'version', Version, aliases: ['v', '-v', '--version']
   end
 end

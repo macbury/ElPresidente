@@ -16,7 +16,7 @@ module Elpresidente
     def ready!(develop:)
       if develop
         Async.logger.info 'Enabled live reload'
-        @loader.enable_reloading 
+        @loader.enable_reloading
       end
       @develop = develop
       @loader.setup

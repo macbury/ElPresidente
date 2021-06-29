@@ -19,6 +19,10 @@ AllCops:
     - elpresidente.gemspec
     - Rakefile
 
+Style/MutableConstant:
+  Enabled: false
+Layout/HeredocIndentation:
+  Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
 Layout/TrailingEmptyLines:
@@ -80,8 +84,14 @@ Style/StringLiterals:
   Exclude:
     - spec/**/*
 Metrics/BlockLength:
-  Enabled: true
-  Exclude:
-    - spec/**/*
+  Enabled: false
 Style/RescueStandardError:
+  Enabled: false
+Lint/SuppressedException:
+  Enabled: false
+Naming/MethodParameterName:
+  Enabled: false
+Lint/MissingSuper:
+  Enabled: false
+Security/YAMLLoad:
   Enabled: false

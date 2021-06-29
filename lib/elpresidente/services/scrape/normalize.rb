@@ -15,7 +15,6 @@ module Scrape
   #
   # If a nil or empty string is passed, returns nil.
   class Normalize < Service
-
     def initialize(url, base_url: nil)
       @url = url
       @base_url = base_url
@@ -29,7 +28,7 @@ module Scrape
       # resolve (protocol) relative URIs
       if uri.relative?
         base_uri = Addressable::URI.parse(base_url.strip)
-        scheme = base_uri.scheme || "http"
+        scheme = base_uri.scheme || 'http'
         uri = Addressable::URI.join("#{scheme}://#{base_uri.host}", uri)
       end
 

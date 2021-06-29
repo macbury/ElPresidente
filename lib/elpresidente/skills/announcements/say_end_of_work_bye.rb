@@ -5,7 +5,7 @@ module Elpresidente
         BYE = [
           'Bye', 'Narazie', 'Bye bye', 'Sayonara', 'Kamikadze', 'Yolo!'
         ]
-        
+
         def execute
           return unless cron_match?('30 16 * * 1,2,3,4,5')
 

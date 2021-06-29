@@ -11,7 +11,7 @@ module Elpresidente
           in { pasek: }
             typing!
             image_url = generate_meme(internet: internet, message: pasek)
-            
+
             say!(image_url) do |block|
               block.image url: image_url, alt_text: pasek
             end

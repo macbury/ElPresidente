@@ -1,5 +1,5 @@
 require 'elpresidente/version'
-require "active_support/all"
+require 'active_support/all'
 require 'async/container'
 require 'async/container/notify'
 require 'async/semaphore'
@@ -16,8 +16,10 @@ require 'fugit'
 require_relative './elpresidente/loader'
 
 module Elpresidente
-  module Skills;end
-  module Blackboard;end
+  module Skills; end
+
+  module Blackboard; end
+
   class Error < StandardError; end
 
   def self.loader

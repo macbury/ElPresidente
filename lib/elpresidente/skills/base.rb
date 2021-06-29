@@ -18,7 +18,7 @@ module Elpresidente
       end
 
       def self.execute(...)
-        skill = self.new(...)
+        skill = new(...)
         skill.execute
         skill.result
       end
@@ -39,13 +39,13 @@ module Elpresidente
 
       private
 
-      attr_reader :barrier, :client, :data, :blackboard, :task, :internet
+      attr_reader :client, :data, :blackboard, :task, :internet
 
       # Run each skill until any of it returns :stop
       def sequence(skills)
-        skills.each do |skill_class|          
+        skills.each do |skill_class|
           @result = skill_class.execute(self)
-  
+
           if @result == :continue
             Async.logger.info "Executed: #{skill_class}, continue."
           elsif result == :stop
@@ -55,7 +55,7 @@ module Elpresidente
           next if @result == :continue || @result == :skip
           break if @result == :stop
 
-          raise "Please end your execute method with stop! or continue!"
+          raise 'Please end your execute method with stop! or continue!'
         end
         @result
       end
@@ -108,7 +108,7 @@ module Elpresidente
       def reply!(message, channel: nil, &block)
         blocks = block ? Slack::BlockKit.blocks(&block).as_json : []
 
-        client.web_client.chat_postMessage(channel: channel_id, text: message, blocks: blocks, thread_ts: thread_id)
+        client.web_client.chat_postMessage(channel: channel || channel_id, text: message, blocks: blocks, thread_ts: thread_id)
       end
 
       # Send message on current channel
@@ -160,7 +160,7 @@ module Elpresidente
         Async.logger.info "[#{self.class.name}] #{msg}"
         nil
       end
-    
+
       def error(msg)
         Async.logger.error "[#{self.class.name}] #{msg}"
         nil

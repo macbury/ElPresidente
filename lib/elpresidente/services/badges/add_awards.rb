@@ -2,8 +2,9 @@ module Badges
   class AddAwards < ServiceWithWorksheet
     use FetchBoard, as: :fetch_board
     # https://pl.wikipedia.org/wiki/Stopnie_wojskowe_w_Polsce
-    RANGES = ['mięso armatnie', 'szeregowy', 'starszy szeregowy', 'kapral', 'starszy kapral', 'plutonowy', 'sierżant', 'starszy sierżant', 'młodszy chorąży', 'chorąży', 'starszy chorąży', 'starszy chorąży sztabowy', 'podporucznik', 'porucznik', 'kapitan', 'major', 'podpułkownik', 'pułkownik', 'generał brygady', 'generał dywizji', 'generał broni', 'generał']
-    
+    RANGES = ['mięso armatnie', 'szeregowy', 'starszy szeregowy', 'kapral', 'starszy kapral', 'plutonowy', 'sierżant', 'starszy sierżant', 'młodszy chorąży', 'chorąży', 'starszy chorąży',
+              'starszy chorąży sztabowy', 'podporucznik', 'porucznik', 'kapitan', 'major', 'podpułkownik', 'pułkownik', 'generał brygady', 'generał dywizji', 'generał broni', 'generał']
+
     def initialize(awards)
       @awards = awards
     end
@@ -17,7 +18,7 @@ module Badges
         points += options[:points]
         current_board[user_id][:points] = points
       end
-      
+
       current_board.values.each_with_index do |options, index|
         row = index + 2
         worksheet[row, 1] = options[:user_id]
@@ -34,7 +35,7 @@ module Badges
     private
 
     attr_reader :awards
-    
+
     def points_to_range(points)
       RANGES[(points.to_i / 5).floor] || RANGES[-1]
     end

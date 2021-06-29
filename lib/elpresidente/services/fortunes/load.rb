@@ -11,9 +11,10 @@ module Fortunes
       info "Loading: #{fortunes_path}"
       tasks = Dir[fortunes_path].map do |path|
         next if File.directory?(path)
+
         barrier.async { load_fortunes(path) }
       end
-      
+
       barrier.wait
       fortunes = tasks.map(&:result).flatten
       10.times { fortunes.shuffle! }

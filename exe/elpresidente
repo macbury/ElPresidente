@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "elpresidente"
-require "elpresidente/cli"
+require 'bundler/setup'
+require 'elpresidente'
+require 'elpresidente/cli'
 require 'dotenv/load'
 require 'zeitwerk'
 

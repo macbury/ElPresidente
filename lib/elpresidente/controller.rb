@@ -1,6 +1,6 @@
 module Elpresidente
   class Controller < Async::Container::Controller
-    def initialize(concurrency: 25, workers: 1, develop: false, redis_uri:)
+    def initialize(redis_uri:, concurrency: 25, workers: 1, develop: false)
       super(notify: Async::Container::Notify.open!)
 
       Elpresidente.loader.ready!(develop: develop)
@@ -10,7 +10,6 @@ module Elpresidente
       @client = Slack::RealTime::Client.new
       @concurrency = concurrency
       @workers = workers
-      @schedule = schedule
       @semaphore = Async::Semaphore.new(concurrency)
       @develop = develop
     end
@@ -27,7 +26,7 @@ module Elpresidente
     end
 
     def cleanup
-      Async.logger.error "Cleanup"
+      Async.logger.error 'Cleanup'
       internet.close
       redis.close
     end
@@ -50,8 +49,8 @@ module Elpresidente
       Async.logger.info "Started, max concurrency is: #{concurrency}"
 
       client.on(:message) do |data|
-        semaphore.async do |task|
-          execute_skill(Skills::Start, data, task)
+        semaphore.async do |sem|
+          execute_skill(Skills::Start, data, sem)
         end
       end
 
@@ -64,9 +63,9 @@ module Elpresidente
       Elpresidente.loader.reload!
 
       skill_class.execute(
-        client: client, 
-        data: data, 
-        task: task, 
+        client: client,
+        data: data,
+        task: task,
         internet: internet,
         blackboard: Blackboard::Skill.new(client: redis, data: data)
       )

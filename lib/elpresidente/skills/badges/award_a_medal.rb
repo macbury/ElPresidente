@@ -20,11 +20,13 @@ module Elpresidente
 
           awards = message.scan(/<@(?<user_id>.+)>(?<raw_points>.+)$/i).each_with_object({}) do |(user_id, raw_points), hash|
             points = raw_points.scan(/:star:/).size
+            next unless points.positive?
+
             hash[user_id] = {
               points: points,
               name: client.users[user_id].name,
               user_id: user_id
-            } if points > 0
+            }
           end
 
           react!('wrench')

@@ -14,7 +14,7 @@ module Elpresidente
           info "Got: #{suchar}"
 
           say!(suchar[:text])
-          
+
           if suchar[:punchline]
             task.async do |punchline|
               ['five', 'four', 'three', 'two', 'one'].each do |num|

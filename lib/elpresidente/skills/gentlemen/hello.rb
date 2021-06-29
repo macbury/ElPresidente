@@ -6,7 +6,7 @@ module Elpresidente
           return unless mentioned? || personal?
           return unless match?(/hello/)
 
-          reply! "Haraszo"
+          reply! 'Haraszo'
           stop!
         end
       end

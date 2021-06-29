@@ -15,7 +15,7 @@ module Elpresidente
           return unless author_id
           return unless mentioned? || personal?
 
-          reply! RESPONSES.shuffle.first
+          reply! RESPONSES.sample
           stop!
         end
       end

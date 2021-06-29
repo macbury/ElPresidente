@@ -2,7 +2,7 @@ module Scrape
   class Html < Service
     use ResolveUrl, as: :resolve_url
 
-    def initialize(internet: nil, url:, css_query:)
+    def initialize(url:, css_query:, internet: nil)
       @internet = internet || Async::HTTP::Internet.new
       @url = url
       @css_query = css_query

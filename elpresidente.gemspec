@@ -35,4 +35,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'nokogiri', '~> 1.11'
   spec.add_dependency 'addressable', '~> 2.7'
   spec.add_dependency 'fugit', '~> 1.5'
+  spec.add_development_dependency 'rubocop'
 end

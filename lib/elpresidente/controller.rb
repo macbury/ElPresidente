@@ -1,13 +1,10 @@
-
-
 module Elpresidente
   class Controller < Async::Container::Controller
-    def initialize(concurrency: 25, schedule: {}, workers: 1, develop: false, redis_uri:)
+    def initialize(concurrency: 25, workers: 1, develop: false, redis_uri:)
       super(notify: Async::Container::Notify.open!)
 
       Elpresidente.loader.ready!(develop: develop)
 
-      @cron_queue = Async::Queue.new
       @redis = Async::Redis::Client.new(Async::IO::Endpoint.tcp(redis_uri.hostname, redis_uri.port))
       @internet = Async::HTTP::Internet.new
       @client = Slack::RealTime::Client.new
@@ -59,6 +56,7 @@ module Elpresidente
       end
 
       client.start_async
+
       loop { task.sleep 60 }
     end
 

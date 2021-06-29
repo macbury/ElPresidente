@@ -31,6 +31,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ast (2.4.2)
     async (1.29.1)
       console (~> 1.10)
       nio4r (~> 2.3)
@@ -130,6 +131,9 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     os (1.1.1)
+    parallel (1.20.1)
+    parser (3.0.1.1)
+      ast (~> 2.4.1)
     protocol-hpack (1.4.2)
     protocol-http (0.22.4)
     protocol-http1 (0.14.1)
@@ -144,7 +148,9 @@ GEM
     public_suffix (4.0.6)
     raabro (1.4.0)
     racc (1.5.2)
+    rainbow (3.0.0)
     rake (12.3.3)
+    regexp_parser (2.1.1)
     representable (3.1.1)
       declarative (< 0.1.0)
       trailblazer-option (>= 0.1.1, < 0.2.0)
@@ -164,6 +170,18 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.2)
+    rubocop (1.18.0)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.7.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.7.0)
+      parser (>= 3.0.1.1)
+    ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.4)
     rufus-scheduler (3.7.0)
       fugit (~> 1.1, >= 1.1.6)
@@ -184,6 +202,7 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
+    unicode-display_width (2.0.0)
     webrick (1.7.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -197,6 +216,7 @@ DEPENDENCIES
   elpresidente!
   rake (~> 12.0)
   rspec (~> 3.0)
+  rubocop
 
 BUNDLED WITH
    2.2.3
